@@ -1,0 +1,54 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+	
+	
+ 
+	<mat-label>Favorite food</mat-label>
+	<mat-cell *matCellDef="let element">
+	<input matInput placeholder="Search">
+	</mat-cell>
+  
+
+	<ng-container matColumnDef="name">
+	  <th mat-header-cell *matHeaderCellDef> Name. </th>
+	  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+	</ng-container>
+  
+	<!-- Name Column -->
+	<ng-container matColumnDef="team">
+	  <th mat-header-cell *matHeaderCellDef> Team </th>
+	  <td mat-cell *matCellDef="let element "> {{element.team}} </td>
+	</ng-container>
+  
+	<!-- Weight Column -->
+	<ng-container matColumnDef="dob">
+	  <th mat-header-cell *matHeaderCellDef> DOB </th>
+	  <td mat-cell *matCellDef="let element"> {{element.dob}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="age">
+		<th mat-header-cell *matHeaderCellDef> AGE </th>
+		<td mat-cell *matCellDef="let element"> {{element.dob | agePipe}} </td>
+	  </ng-container>
+	
+  
+	<!-- Symbol Column -->
+	<ng-container matColumnDef="noof4">
+	  <th mat-header-cell *matHeaderCellDef> No of 4 </th>
+	  <td mat-cell *matCellDef="let element"> {{element.noOf4}} </td>
+	</ng-container>
+
+	<ng-container matColumnDef="noof6">
+		<th mat-header-cell *matHeaderCellDef> No of 6 </th>
+		<td mat-cell *matCellDef="let element"> {{element.noOf6}} </td>
+	  </ng-container>
+
+	  <ng-container matColumnDef="others">
+		<th mat-header-cell *matHeaderCellDef> Others </th>
+		<td mat-cell *matCellDef="let element"> {{element.others}} </td>
+	  </ng-container>
+  
+	<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	<tr (click)="getData(row)" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

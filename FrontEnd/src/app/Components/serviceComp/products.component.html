@@ -1,0 +1,41 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<div class="container">
+        <div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Products</h3>
+						<h5 class="panel-title">Service Component</h5>
+						<div class="pull-right">
+							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+						
+							</span>
+						</div>
+					</div>
+					<div class="panel-body">
+						
+					</div>
+					<table class="table table-hover" id="dev-table">
+						<thead>
+							<tr *ngIf="players.length > 0">
+								<th>Id</th>
+								<th>Product Name</th>
+								<th>Brand</th>
+								<th>Price</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor = "let product of players">
+								<td>{{product.id}}</td>
+								<td>{{product.name}}</td>
+								<td>{{product.brand}}</td>
+								<td>{{product.price}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+            </div>
+        </div>
+    </div>
