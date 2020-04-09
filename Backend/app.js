@@ -2,7 +2,18 @@ const express = require('express');
 const app = express();
 const Task = require('./database/models/task');
 const List = require ('./database/models/list');
+const User =require('./database/models/user');
 const mongoose = require('./database/mongoose');
+//const rgxIndex = require('./index.route.js');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+
+
+//middleware
+app.use(bodyParser.json());
+app.use(cors());
+
 app.use(express.json());
 
 
@@ -87,6 +98,18 @@ LIST end point CREATION
         Task.findByIdAndDelete({_listId: req.params.listId, '_id': req.params.taskId})
             .then((task) =>res.send(task))
             .catch((error)=>console.log(error));
+    })
+
+// END point for user registration
+     
+     app.post('/register', (req,res,next)=>{
+        (new User({'fullname': req.body.fullname , 'email': req.body.email, 'password': req.body.password}))
+        .save((err,doc)=>{
+            if(!err)
+                res.send(doc);
+        })
+            .then((user)=>res.send(user))
+            .catch((error)=> console.log(error));
     })
 
         

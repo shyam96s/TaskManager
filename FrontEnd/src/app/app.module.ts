@@ -47,6 +47,7 @@ import { NewTaskComponent } from './pages/new-task/new-task.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
 
 
+
 const appRoutes: Routes = [
   { path: '', component: FormsComponent },
   { path: 'products', component: ProductsComponent  },
@@ -98,6 +99,7 @@ const appRoutes: Routes = [
     MatListModule,
     MatIconModule,
     MatDialogModule,
+    
     RouterModule.forRoot(
       appRoutes,
       { useHash: true }

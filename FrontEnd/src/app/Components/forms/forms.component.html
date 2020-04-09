@@ -1,3 +1,36 @@
-<body>
-<p>Form component</p>
-</body>
+<div class="form-group">
+    <form [formGroup]="myForm">
+      <mat-form-field>
+      <input matInput placeholder="Fname" formControlName="fname"  >
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Lname" formControlName="lname" >
+    </mat-form-field>
+    <br>
+    
+    
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email" >
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <textarea matInput placeholder="Type here" formControlName = "message" >
+    
+      </textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-select formControlName="type" placeholder="type">
+        <mat-option *ngFor ="let food of foods" value= "food.value"> {{food.viewValue}} </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-radio-group aria-label="Select gender" >
+      <mat-radio-button value="Male">Male</mat-radio-button>
+      <mat-radio-button value="Female">Female</mat-radio-button>
+    </mat-radio-group>
+    <br>
+    <button mat-raised-button color="primary" type="submit" > Submit</button>
+    </form>
+    </div>
