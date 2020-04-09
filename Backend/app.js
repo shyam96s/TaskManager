@@ -3,7 +3,9 @@ const app = express();
 const Task = require('./database/models/task');
 const List = require ('./database/models/list');
 const User =require('./database/models/user');
+const Email = require('./database/models/user')
 const mongoose = require('./database/mongoose');
+const rgxIndex = require('./Routes/index.route')
 //const rgxIndex = require('./index.route.js');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -15,6 +17,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use(express.json());
+//userReg
+
+app.use('/api',rgxIndex);
+
 
 
 app.use( (req,res,next) =>{
@@ -102,7 +108,7 @@ LIST end point CREATION
 
 // END point for user registration
      
-     app.post('/register', (req,res,next)=>{
+     /*app.post('/register', (req,res)=>{
         (new User({'fullname': req.body.fullname , 'email': req.body.email, 'password': req.body.password}))
         .save((err,doc)=>{
             if(!err)
@@ -111,6 +117,22 @@ LIST end point CREATION
             .then((user)=>res.send(user))
             .catch((error)=> console.log(error));
     })
+    */
+//End point to get users
+    app.get('/users', (req,res)=>{
+        User,Email.find({})
+            .then((users)=> res.send(users))
+            .catch((error)=>console.log((error)))
+    })
+
+//Global Error handling
+    app.use((req,res,next,err)=>{
+        if(err.name == 'ValidationError'){
+        var  valErrors= [];
+        Object.keys(err.errors).forEach(key => valErrors.push(err.errors[key].message));
+        res.status(422).send(valErrors);
+        }
+    });
 
         
 

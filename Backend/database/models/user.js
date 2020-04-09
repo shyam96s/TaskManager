@@ -1,16 +1,24 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs')
+
+
 const userSchema = new mongoose.Schema({
     fullname :{
-        type : String
+        type : String,
+        
     },
     email : {
-        type : String
-    },
+        type : String,
+        required : 'Email cant be empty',
+        unique : true
+    }, 
     password : {
-        type : String
+        type : String,
+        required : 'Password is mandatory',
+        minlength : [8,'Password should be atleast 8chars long']
     },
-    saltSecret : String
+    saltSecret : String,
+    
 });
 //encrypt funtion of password
 userSchema.pre('save', function (next){
@@ -22,5 +30,30 @@ userSchema.pre('save', function (next){
         });
     });
 });
+
+var validateEmail = function(email) {
+    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return re.test(email)
+};
+
+var EmailSchema = new mongoose.Schema({
+    email: {
+        type: String,
+        trim: true,
+        lowercase: true,
+        unique: true,
+        required: 'Email address is required',
+        validate: [validateEmail, 'Please fill a valid email address'],
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+    }
+});
+
+//validation for email
+/*userSchema.path('email').validate((val)=>{
+    emailRegex = /^(([^<>()[]\.,;:s@"]+(.[^<>()[]\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/ ;
+    return emailRegex.test(val);
+}, 'Invalid email.');
+*/ 
 const User = mongoose.model('User', userSchema);
-module.exports=User;
+const Email = mongoose.model('Email', EmailSchema)
+module.exports=User, Email;
