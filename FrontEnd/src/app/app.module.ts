@@ -44,7 +44,9 @@ import {MatGridListModule} from '@angular/material/grid-list'
 import { TaskViewComponent } from './Components/task-view/task-view.component';
 import { NewListComponent } from './pages/new-list/new-list.component';
 import { NewTaskComponent } from './pages/new-task/new-task.component';
-import { SignUpComponent } from './Components/sign-up/sign-up.component';
+
+import { UserComponent } from './Components/user/user.component';
+import { SignupUserRegComponent } from './Components/user/signup-user-reg/signup-user-reg.component';
 
 
 
@@ -69,7 +71,10 @@ const appRoutes: Routes = [
     TaskViewComponent,
     NewListComponent,
     NewTaskComponent,
-    SignUpComponent,
+    
+    UserComponent,
+    
+    SignupUserRegComponent,
     
   ],
   imports: [

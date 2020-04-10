@@ -8,6 +8,7 @@ import { FormsComponent } from './Components/forms/forms.component';
 import { TaskViewComponent } from './Components/task-view/task-view.component';
 import {NewListComponent} from './pages/new-list/new-list.component';
 import {NewTaskComponent} from './pages/new-task/new-task.component';
+import { SignupUserRegComponent } from './Components/user/signup-user-reg/signup-user-reg.component';
 
 
 
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'lists/:listId', component : TaskViewComponent},
   {path: 'new-list', component : NewListComponent},
   {path: 'lists/:listId/new-task', component : NewTaskComponent},
+  {path: 'signup', component : SignupUserRegComponent}
 
   //{path: '**', component:PnfoundComponent}
 ];
